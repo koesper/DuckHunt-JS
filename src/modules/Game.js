@@ -2,10 +2,10 @@ import {loader, autoDetectRenderer} from 'pixi.js';
 import {noop as _noop} from 'lodash/util';
 import levels from '../data/levels.json';
 import Stage from './Stage';
-import sound from'./Sound';
+import sound from './Sound';
 
-const BLUE_SKY_COLOR = 0x64b0ff;
-const PINK_SKY_COLOR = 0xfbb4d4;
+const BLUE_SKY_COLOR = 0xf0fbfc; // 0x64b0ff;
+const PINK_SKY_COLOR = 0xfafefe; // 0xfbb4d4;
 const SUCCESS_RATIO = 0.6;
 
 class Game {
@@ -18,8 +18,8 @@ class Game {
   constructor(opts) {
     this.spritesheet = opts.spritesheet;
     this.loader = loader;
-    this.renderer =  autoDetectRenderer(window.innerWidth, window.innerHeight, {
-      backgroundColor: BLUE_SKY_COLOR
+    this.renderer = autoDetectRenderer(window.innerWidth, window.innerHeight, {
+      backgroundColor: BLUE_SKY_COLOR,
     });
     this.levelIndex = 0;
 
@@ -42,7 +42,7 @@ class Game {
         this.stage.hud.createTextureBasedCounter('ducksMissed', {
           texture: 'hud/score-live/0.png',
           spritesheet: this.spritesheet,
-          location: Stage.missedDuckStatusBoxLocation()
+          location: Stage.missedDuckStatusBoxLocation(),
         });
       }
 
@@ -63,13 +63,14 @@ class Game {
         this.stage.hud.createTextureBasedCounter('ducksShot', {
           texture: 'hud/score-dead/0.png',
           spritesheet: this.spritesheet,
-          location: Stage.deadDuckStatusBoxLocation()
+          location: Stage.deadDuckStatusBoxLocation(),
         });
       }
 
       this.stage.hud.ducksShot = val;
     }
   }
+
   /**
    * bullets - getter
    * @returns {Number}
@@ -94,7 +95,7 @@ class Game {
         this.stage.hud.createTextureBasedCounter('bullets', {
           texture: 'hud/bullet/0.png',
           spritesheet: this.spritesheet,
-          location: Stage.bulletStatusBoxLocation()
+          location: Stage.bulletStatusBoxLocation(),
         });
       }
 
@@ -129,13 +130,14 @@ class Game {
             fontFamily: 'Arial',
             fontSize: '18px',
             align: 'left',
-            fill: 'white'
+            // fill: 'white',
+            fill: '0x00bed1',
           },
           location: Stage.scoreBoxLocation(),
           anchor: {
             x: 1,
-            y: 0
-          }
+            y: 0,
+          },
         });
       }
 
@@ -170,13 +172,13 @@ class Game {
             fontFamily: 'Arial',
             fontSize: '18px',
             align: 'left',
-            fill: 'white'
+            fill: 'white',
           },
           location: Stage.waveStatusBoxLocation(),
           anchor: {
             x: 1,
-            y: 1
-          }
+            y: 1,
+          },
         });
       }
 
@@ -211,9 +213,10 @@ class Game {
             fontFamily: 'Arial',
             fontSize: '40px',
             align: 'left',
-            fill: 'white'
+            // fill: 'white',
+            fill: '0x00bed1'
           },
-          location: Stage.gameStatusBoxLocation()
+          location: Stage.gameStatusBoxLocation(),
         });
       }
 
@@ -231,7 +234,7 @@ class Game {
     document.body.appendChild(this.renderer.view);
 
     this.stage = new Stage({
-      spritesheet: this.spritesheet
+      spritesheet: this.spritesheet,
     });
 
     this.scaleToWindow();
@@ -353,35 +356,35 @@ class Game {
   }
 
   getScoreMessage() {
-      let scoreMessage;
+    let scoreMessage;
 
-      if (this.score === 9400) {
-        scoreMessage = 'Flawless victory.';
-      }
+    if (this.score === 9400) {
+      scoreMessage = 'Flawless victory.';
+    }
 
-      if (this.score < 9400) {
-        scoreMessage = 'Close to perfection.';
-      }
+    if (this.score < 9400) {
+      scoreMessage = 'Close to perfection.';
+    }
 
-      if (this.score <= 9000) {
-        scoreMessage = 'Truly impressive score.';
-      }
+    if (this.score <= 9000) {
+      scoreMessage = 'Truly impressive score.';
+    }
 
-      if (this.score <= 8000) {
-        scoreMessage = 'Solid score.'
-      }
+    if (this.score <= 8000) {
+      scoreMessage = 'Solid score.';
+    }
 
-      if (this.score <= 6000) {
-        scoreMessage = 'Yikes.';
-      }
+    if (this.score <= 6000) {
+      scoreMessage = 'Yikes.';
+    }
 
-      return scoreMessage;
+    return scoreMessage;
   }
 
   showReplay(replayText) {
-      this.stage.hud.createTextBox('replayButton', {
-          location: Stage.replayButtonLocation()
-      });
+    this.stage.hud.createTextBox('replayButton', {
+      location: Stage.replayButtonLocation(),
+    });
     this.stage.hud.replayButton = replayText + ' Play Again?';
     this.bindInteractions();
 
@@ -389,8 +392,8 @@ class Game {
 
   handleClick(event) {
     let clickPoint = {
-        x: event.data.global.x,
-        y: event.data.global.y
+      x: event.data.global.x,
+      y: event.data.global.y,
     };
 
     if (!this.stage.hud.replayButton && !this.outOfAmmo()) {

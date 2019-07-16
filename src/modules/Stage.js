@@ -24,7 +24,8 @@ const HUD_LOCATIONS = {
   WAVE_STATUS: new Point(MAX_X - 10, MAX_Y - 20),
   GAME_STATUS: new Point(MAX_X / 2, MAX_Y * 0.45),
   REPLAY_BUTTON: new Point(MAX_X / 2, MAX_Y * 0.56),
-  BULLET_STATUS: new Point(10, 10),
+  // BULLET_STATUS: new Point(10, 10),
+  BULLET_STATUS: new Point(102, 18),
   DEAD_DUCK_STATUS: new Point(10, MAX_Y * 0.91),
   MISSED_DUCK_STATUS: new Point(10, MAX_Y * 0.95)
 };
