@@ -3,6 +3,7 @@ var audiosprite = require('./vendor/audiosprite');
 var glob = require('glob');
 var shell = require('gulp-shell');
 var fs = require('fs');
+var connect = require('gulp-connect');
 
 gulp.task('audio', gulp.parallel(function() {
   var files = glob.sync('./src/assets/sounds/*.mp3');

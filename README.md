@@ -10,6 +10,9 @@ This game supports WebGL and Canvas rendering via the PixiJS rendering engine.
 ## Audio
 This game will attempt to use the WebAudioAPI and fallback to HTML5 Audio if necessary. Audio is loaded and controlled via HowlerJS.
 
+## Images
+This game creates sprites (when calling `npm run images`) using [TexturePacker](https://www.codeandweb.com/texturepacker). Don't forget to install the CLI extentions from the texturepacker app
+
 ## Tweening
 The animations in this game are a combination of PixiJS MovieClips built from sprite images and tweens. Since PixiJS doesn't provide a tweening API, Green Sock was used.
 
